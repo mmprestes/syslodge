@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lodges', function (Blueprint $table) {
-            $table->uuid('id')->primary;
-            $table->string('name');
-            $table->string('number');
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->uuid('lodge_id')->nullable();
+            $table->foreign('lodge_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +26,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lodges');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_lodge_id_foreign');
+            $table->dropColumn('lodge_id');
+        });
+
     }
 };
