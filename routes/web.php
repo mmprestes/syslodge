@@ -25,7 +25,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'lodgeName' => Auth::user()->lodge->name,
+        'lodgeNumber' => Auth::user()->lodge->number,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

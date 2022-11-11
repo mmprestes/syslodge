@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Lodge;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -35,16 +36,25 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'lodge_name' => 'required|string|max:255',
+            'lodge_number' => 'required|string|max:4',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $lodge = Lodge::create([
+            'name' => $request->lodge_name,
+            'number' => $request->lodge_number,
+        ]);
+
+        $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $lodge->users()->save($user);
 
         event(new Registered($user));
 
