@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->uuid('lodge_id')->nullable();
-            // $table->foreignUuid('lodge_id')->constrained('lodges');
-            // $table->foreign('lodge_id')->references('id')->on('lodges');
         });
     }
 
@@ -28,7 +26,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->dropForeign('users_lodge_id_foreign');
             $table->dropColumn('lodge_id');
         });
 
