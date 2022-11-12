@@ -21,8 +21,11 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo class="block h-9 w-auto" />
+                                    <ApplicationLogo class="block h-10 w-auto" />
                                 </Link>
+                                <div class="flex h-6 w-15 space-x-8 sm:-my-px sm:ml-2 sm:flex">
+                                    SysLodge
+                                </div>
                             </div>
 
                             <!-- Navigation Links -->
@@ -30,10 +33,25 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+                                <NavLink :href="route('secretaria.home')" :active="route().current('secretaria.home')">
+                                    Secretaria
+                                </NavLink>
+                                <NavLink :href="route('chancelaria.home')" :active="route().current('chancelaria.home')">
+                                    Chancelaria
+                                </NavLink>
+                                <!-- <NavLink :href="route('dashboard')">
+                                    Tesouraria
+                                </NavLink>
+                                <NavLink :href="route('dashboard')">
+                                    Presidência
+                                </NavLink> -->
                             </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+                            <span class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                {{ $page.props.auth.lodge.name }} Nº {{ $page.props.auth.lodge.number }}
+                            </span>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
@@ -41,7 +59,6 @@ const showingNavigationDropdown = ref(false);
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                                 {{ $page.props.auth.user.name }}
-
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                 </svg>
@@ -51,7 +68,10 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
+                                            Perfil
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                            Sair
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>

@@ -4,6 +4,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+
+// Controllers de negocio
+use App\Http\Controllers\SecretariaController;
+use App\Http\Controllers\ChancelariaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +29,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        'lodgeName' => Auth::user()->lodge->name,
-        'lodgeNumber' => Auth::user()->lodge->number,
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/secretaria', [SecretariaController::class, 'home'])->name('secretaria.home');
+    Route::get('/chancelaria', [ChancelariaController::class, 'home'])->name('chancelaria.home');
+
+});
 
 require __DIR__.'/auth.php';
