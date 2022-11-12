@@ -9,6 +9,7 @@ use Inertia\Inertia;
 // Controllers de negocio
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\ChancelariaController;
+use App\Http\Controllers\LodgeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/secretaria', [SecretariaController::class, 'home'])->name('secretaria.home');
     Route::get('/chancelaria', [ChancelariaController::class, 'home'])->name('chancelaria.home');
+
+    Route::get('/loja', [LodgeController::class, 'edit'])->name('loja.edit');
+    Route::post('/loja', [LodgeController::class, 'store'])->name('loja.store');
 
 });
 

@@ -50,7 +50,9 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <span class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                {{ $page.props.auth.lodge.name }} Nº {{ $page.props.auth.lodge.number }}
+                                <NavLink :href="route('loja.edit')">
+                                    {{ $page.props.auth.lodge.name }} Nº {{ $page.props.auth.lodge.number }}
+                                </NavLink>
                             </span>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
