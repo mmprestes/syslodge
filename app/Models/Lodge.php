@@ -14,6 +14,12 @@ class Lodge extends Model
     protected $fillable = [
         'name',
         'number',
+        'rite',
+        'potency',
+        'session_day',
+        'founded_at',
+        'phone_number',
+        'address',
         'is_active',
     ];
 
