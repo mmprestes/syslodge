@@ -11,7 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Mail as Mail;
+use App\Mail\NewLodgeMail;
 use Inertia\Inertia;
+
+use App\Jobs\ProcessNewLodge;
 
 class RegisteredUserController extends Controller
 {
@@ -59,6 +63,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $message = (new NewLodgeMail($user))
+                ->onQueue('emails');
+        Mail::to($user)->queue($message);
+
 
         return redirect(RouteServiceProvider::HOME);
     }

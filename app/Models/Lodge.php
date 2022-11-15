@@ -19,6 +19,7 @@ class Lodge extends Model
         'session_day',
         'founded_at',
         'phone_number',
+        'email',
         'address',
         'is_active',
     ];

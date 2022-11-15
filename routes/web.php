@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\ChancelariaController;
 use App\Http\Controllers\LodgeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

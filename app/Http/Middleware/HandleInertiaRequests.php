@@ -34,6 +34,18 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $toast = null;
+        if ($request->session()->has('errors')) {
+            $toast = [
+                'title'      => 'Verifique os erros.',
+                'message'    => null,
+                'type'       => 'warning',
+                'alwaysShow' => false
+            ];
+        } else {
+            $toast = $request->session()->get('toast', null);
+        }
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
@@ -44,6 +56,7 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'toast' => $toast,
         ]);
     }
 }
