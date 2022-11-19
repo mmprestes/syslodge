@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Tenantable;
+use App\Traits\UUID;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Str;
-use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable, UUID, Tenantable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'lodge_id',
         'name',
         'email',
         'password',
@@ -35,6 +35,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+    
     /**
      * The attributes that should be cast.
      *
@@ -43,19 +47,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected $keyType = 'string';
-    public $incrementing = false;
-
-    public static function boot() {
-        parent::boot();
-
-        static::creating(function(Authenticatable $model) {
-            if (empty($model->id)) {
-                $model->id = Str::uuid();
-            }
-        });
-    }
 
     /**
      * Get the user that owns the User

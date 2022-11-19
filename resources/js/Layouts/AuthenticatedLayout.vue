@@ -37,12 +37,14 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userInfo.name}`;
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
                                 <NavLink :href="route('secretaria.home')" :active="route().current('secretaria.home')">
                                     Secretaria
                                 </NavLink>
+                                
                                 <NavLink :href="route('chancelaria.home')" :active="route().current('chancelaria.home')">
                                     Chancelaria
                                 </NavLink>

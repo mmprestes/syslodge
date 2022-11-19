@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lodge;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,8 @@ class LodgeController extends Controller {
 
     public function edit()
     {
-        $lodge = Auth::user()->lodge;
-        return Inertia::render('Loja/Edit', ['lodge' => $lodge,]);
+        $lodge = Lodge::find(session('lodge_id'));
+        return Inertia::render('Loja/Edit', ['lodge' => $lodge]);
     }
 
     public function store(Request $request)

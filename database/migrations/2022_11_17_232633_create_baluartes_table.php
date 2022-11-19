@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lodges', function (Blueprint $table) {
+        Schema::create('baluartes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('number');
-            $table->boolean('is_active')->default(true);
+            $table->foreignUuid('lodge_id')->nullable()->constrained();
+            $table->string('name', 255);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lodges');
+        Schema::dropIfExists('baluartes');
     }
 };
