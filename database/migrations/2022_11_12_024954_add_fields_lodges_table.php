@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('session_day', 100)->nullable();
             $table->date('founded_at')->nullable();
             $table->string('email', 100)->nullable();
+            $table->string('cnpj', 20)->nullable()->nullable();
             $table->string('phone_number',20)->nullable();
             $table->text('address')->nullable();
         });
@@ -37,6 +38,7 @@ return new class extends Migration
             $table->dropColumn('session_day');
             $table->dropColumn('founded_at');
             $table->dropColumn('email');
+            $table->dropColumn('cnpj');
             $table->dropColumn('phone_number');
             $table->dropColumn('address');
         });
