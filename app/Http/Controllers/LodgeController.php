@@ -33,6 +33,11 @@ class LodgeController extends Controller {
             'email' =>'email|max:100|nullable',
             'address' => 'string|nullable',
         ]);
+        if(!is_null($request->input('cnpj'))){
+            $request->validate([
+                'cnpj' => 'cnpj',
+            ]);
+        }
 
         $lodge = Auth::user()->lodge;
         $lodge->name = $request->name;
@@ -43,6 +48,7 @@ class LodgeController extends Controller {
         $lodge->founded_at  = $request->founded_at;
         $lodge->phone_number = $request->phone_number;
         $lodge->email = $request->email;
+        $lodge->cnpj = $request->cnpj;
         $lodge->address = $request->address;
 
         $lodge->save();

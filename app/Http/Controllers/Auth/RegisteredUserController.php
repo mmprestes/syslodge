@@ -47,6 +47,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if(!is_null($request->input('cnpj'))) {
+            $request->validate([
+                'cnpj' => 'cnpj'
+            ]);
+        }
+
         $lodge = Lodge::create([
             'name' => $request->lodge_name,
             'number' => $request->lodge_number,
@@ -67,7 +73,6 @@ class RegisteredUserController extends Controller
         $message = (new NewLodgeMail($user))
                 ->onQueue('emails');
         Mail::to($user)->queue($message);
-
 
         return redirect(RouteServiceProvider::HOME);
     }
