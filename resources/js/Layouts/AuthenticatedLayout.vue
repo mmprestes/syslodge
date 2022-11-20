@@ -44,7 +44,6 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userInfo.name}`;
                                 <NavLink :href="route('secretaria.home')" :active="route().current('secretaria.home')">
                                     Secretaria
                                 </NavLink>
-                                
                                 <NavLink :href="route('chancelaria.home')" :active="route().current('chancelaria.home')">
                                     Chancelaria
                                 </NavLink>
@@ -79,9 +78,6 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userInfo.name}`;
                                     </template>
 
                                     <template #content>
-                                        <!-- <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Perfil
-                                        </DropdownLink> -->
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Sair
                                         </DropdownLink>
