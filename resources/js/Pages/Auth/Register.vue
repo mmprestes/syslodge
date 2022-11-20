@@ -11,6 +11,7 @@ const form = useForm({
     lodge_number: '',
     name: '',
     email: '',
+    cnpj: '',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -35,13 +36,18 @@ const submit = () => {
             </div>
             <div class="mt-4">
                 <InputLabel for="lodge_number" value="Nº da loja" />
-                <TextInput id="lodge_number" type="text" class="mt-1 block w-full" v-model="form.lodge_number" required autofocus autocomplete="lodge_number" />
+                <TextInput id="lodge_number" type="text" class="mt-1 block w-full" v-model="form.lodge_number" required autocomplete="lodge_number" />
                 <InputError class="mt-2" :message="form.errors.lodge_number" />
             </div>
             <div class="mt-4">
                 <InputLabel for="name" value="Seu nome (completo)" />
-                <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" />
                 <InputError class="mt-2" :message="form.errors.name" />
+            </div>
+            <div class="mt-4">
+                <InputLabel for="cnpj" value="CNPJ (opcional)" />
+                <TextInput id="cnpj" type="text" class="mt-1 block w-full" v-model="form.cnpj" autocomplete="cnpj" />
+                <InputError class="mt-2" :message="form.errors.cnpj" />
             </div>
 
             <div class="mt-4">

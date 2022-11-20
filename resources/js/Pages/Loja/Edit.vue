@@ -23,6 +23,7 @@ const form = useForm({
     founded_at: props.lodge.founded_at,
     phone_number: props.lodge.phone_number,
     email: props.lodge.email,
+    cnpj: props.lodge.cnpj,
     address: props.lodge.address,
 });
 
@@ -87,6 +88,12 @@ const submit = () => {
                                     <TextInput id="founded_at" type="date" class="mt-1 block w-full"
                                         v-model="form.founded_at"  autofocus autocomplete="founded_at" />
                                     <InputError class="mt-2" :message="form.errors.founded_at" />
+                                </div>
+                                <div class="mt-4">
+                                    <InputLabel for="cnpj" value="CNPJ (opcional)" />
+                                    <TextInput id="cnpj" type="text" class="mt-1 block w-full"
+                                        v-model="form.cnpj"  autofocus autocomplete="cnpj" />
+                                    <InputError class="mt-2" :message="form.errors.cnpj" />
                                 </div>
                                 <div class="mt-4">
                                     <InputLabel for="phone_number" value="Telefone da Loja" />
