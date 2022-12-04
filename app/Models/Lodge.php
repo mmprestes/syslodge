@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use \Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -15,7 +16,7 @@ class Lodge extends Model
         'name',
         'number',
         'rite',
-        'potency',
+        'potency_id',
         'session_day',
         'founded_at',
         'phone_number',
@@ -41,6 +42,11 @@ class Lodge extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function potency(): BelongsTo
+    {
+        return $this->belongsTo('Potency');
     }
     
     

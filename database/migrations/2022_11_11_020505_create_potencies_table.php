@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('lodge_id')->nullable()->constrained();
+        Schema::create('potencies', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 255);
             // place your custom fields
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::dropIfExists('potencies');
     }
 };

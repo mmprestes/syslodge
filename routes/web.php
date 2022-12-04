@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\ChancelariaController;
 use App\Http\Controllers\LodgeController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
 
     Route::get('/secretaria', [SecretariaController::class, 'home'])->name('secretaria.home');
     Route::get('/chancelaria', [ChancelariaController::class, 'home'])->name('chancelaria.home');

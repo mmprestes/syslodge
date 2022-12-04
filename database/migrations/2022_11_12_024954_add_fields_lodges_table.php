@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('lodges', function (Blueprint $table) {
             $table->string('rite')->nullable();
-            $table->string('potency')->nullable();
+            $table->foreignId('potency_id')->nullable()->constrained();
             $table->string('session_day', 100)->nullable();
             $table->date('founded_at')->nullable();
             $table->string('email', 100)->nullable();
@@ -34,7 +34,7 @@ return new class extends Migration
     {
         Schema::table('lodges', function (Blueprint $table) {
             $table->dropColumn('rite');
-            $table->dropColumn('potency');
+            $table->dropColumn('potency_id');
             $table->dropColumn('session_day');
             $table->dropColumn('founded_at');
             $table->dropColumn('email');
